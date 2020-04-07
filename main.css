@@ -97,3 +97,25 @@ body{
 .country-details{
     display: none;
         }
+table{
+    border-spacing: 3px 2px;
+    border-collapse: separate;
+    padding: .5rem;
+    font-size: .85rem;
+    text-transform: uppercase;
+    font-weight: 600;
+
+}
+
+.table thead th{
+    border-bottom: none;
+    border-radius: 5px;
+
+
+}
+
+.table td{
+    border-top: none;
+    border-radius: 5px;
+
+}

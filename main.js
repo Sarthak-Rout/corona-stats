@@ -170,7 +170,7 @@ $(document).ready(function(){
           }
 
           for (let index = 0; index < indianstate.length -1; index++) {
-            content += '<tr><td>'+indianstate[index].name+'</td>'+'<td>'+indianstate[index].active+'</td>'+'<td>'+indianstate[index].confirmed+'</td>'+'<td>'+indianstate[index].deaths+'</td>'+'<td>'+indianstate[index].recovered+'</td></tr>';                    
+            content += '<tr><td style="background-color:#FFEFD5;">'+indianstate[index].name+'</td>'+'<td style="background-color:rgba(0,123,255,.0627451);">'+indianstate[index].active+'</td>'+'<td style="background-color:rgba(255,7,58,.12549);">'+indianstate[index].confirmed+'</td>'+'<td style="background-color:#dddddd;">'+indianstate[index].deaths+'</td>'+'<td style="background-color:rgba(40,167,69,.12549);">'+indianstate[index].recovered+'</td></tr>';                    
               
           }
           
