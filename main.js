@@ -140,6 +140,8 @@ $(document).ready(function(){
 
     });
 
+    //Indian states data
+
     var settings3 = {
         "async": true,
         "crossDomain": true,
@@ -175,11 +177,26 @@ $(document).ready(function(){
           }
           
           
-          $('#tbody').append(content);
-            console.log(indianstate);
-        
+          $('#tbody').append(content);        
 
     }); 
+
+    //indian data datewise
+
+    // var settings4 = {
+    //     "async": true,
+    //     "crossDomain": true,
+    //     "url": "https://corona-virus-world-and-india-data.p.rapidapi.com/api_india_timeline",
+    //     "method": "GET",
+    //     "headers": {
+    //         "x-rapidapi-host": "corona-virus-world-and-india-data.p.rapidapi.com",
+    //         "x-rapidapi-key": "fce61b9f8amshf1817269f8a2a63p1d2382jsn44ad90697b6d"
+    //     }
+    // }
+    
+    // $.ajax(settings4).done(function (response) {
+    //     console.log(response);
+    // });
 
   });
 
