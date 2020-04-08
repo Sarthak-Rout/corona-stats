@@ -4,6 +4,7 @@ var indianstate = [];
 
 
 
+
 var xlabel = ['Total cases', 'Active cases', 'Total deaths', 'Total recovered'];
 var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
@@ -26,7 +27,7 @@ var chart = new Chart(ctx, {
 });
 
 $(document).ready(function(){
-    $('#countryname').on('submit', function(e){
+    $('#countryname').on('change', function(e){
         e.preventDefault();
         var country = $('#country').val();
         var ylabel = [];
@@ -75,7 +76,7 @@ $(document).ready(function(){
             $('#total-recover').empty();
 
      //date wise data
-    // for (let index = date.length; index >= 0; index--) {
+    // for (let i = date.length; index >= 0; index--) {
 
     //     var settings3 = {
     //         "async": false,
@@ -154,32 +155,53 @@ $(document).ready(function(){
     }
 
     $.ajax(settings3).done(function (response) {  
+        console.log(response);
         
         for(p in response.state_wise){
+            indianstatedistrict = [];
+            for(q in response.state_wise[p].district){
+                indianstatedistrict.push({
+                    name: q,
+                    confirmed:response.state_wise[p].district[q].confirmed
+                });
+            }
+
             indianstate.push({
                 name: response.state_wise[p].state,
                 active: response.state_wise[p].active ,
                 confirmed:response.state_wise[p].confirmed,
                 deaths:response.state_wise[p].deaths,
-                recovered:response.state_wise[p].recovered
+                recovered:response.state_wise[p].recovered,
+                district: indianstatedistrict
             });
  
         }
+        console.log(indianstate);
         i=1;
         content = '';
 
-        for (p in indianstate) { 
-          }
-
-          for (let index = 0; index < indianstate.length -1; index++) {
-            content += '<tr><td style="background-color:#FFEFD5;">'+indianstate[index].name+'</td>'+'<td style="background-color:rgba(0,123,255,.0627451);">'+indianstate[index].active+'</td>'+'<td style="background-color:rgba(255,7,58,.12549);">'+indianstate[index].confirmed+'</td>'+'<td style="background-color:#dddddd;">'+indianstate[index].deaths+'</td>'+'<td style="background-color:rgba(40,167,69,.12549);">'+indianstate[index].recovered+'</td></tr>';                    
-              
+          for (let i = 0; i < indianstate.length -1; i++) { 
+            if(i > 8){
+                print = 'display: none;';
+            }else{
+                print = '';
+            }
+            content+='<table class="table state-table tid'+i+'" id="sid'+i+'" style="'+print+'"><tbody>';
+            content += '<tr onclick="toggleDistrict('+"'sid"+i+"'"+')" ><td class = "caret"  style="cursor:pointer; width:32px;"><i class="fa fa-caret-right" aria-hidden="true"></i><i class="fa fa-caret-down" aria-hidden="true" style="display:none;"></i></td><td style="background-color:#FFEFD5; width:128px;">'+indianstate[i].name+'</td>'+'<td style="background-color:rgba(0,123,255,.0627451); width:98px">'+indianstate[i].active+'</td>'+'<td style="background-color:rgba(255,7,58,.12549);width:143px">'+indianstate[i].confirmed+'</td>'+'<td style="background-color:#dddddd;width:105px;">'+indianstate[i].deaths+'</td>'+'<td style="background-color:rgba(40,167,69,.12549);width:147px;">'+indianstate[i].recovered+'</td></tr>';                    
+            content+='</tbody></table>';
+            
+            content+='<table class="table district-table sid'+i+'" style="display:none;"> <thead><th  style="width:32px;"></th><th  style="width:128px; background-color: #7c710c; color: #fff;">District</th><th style="width:143px; background-color: crimson; color: #fff;">Confirmed</th> <th colspan="3"></th></thead> <tbody>';
+            for (let j = 0; j < indianstate[i].district.length; j++) {
+                content += '<tr ><td style="width:32px;"></td><td style="background-color:#FFEFD5;width:128px;">'+indianstate[i].district[j].name+'</td><td style="background-color:rgba(255,7,58,.12549); width:143px;">'+indianstate[i].district[j].confirmed+'</td><td colspan="3"></td>';                    
+              }
+            content+='</tbody></table>';
           }
           
           
-          $('#tbody').append(content);        
+          $('#tbody').append(content);    
 
     }); 
+    
 
     //indian data datewise
 
@@ -219,3 +241,10 @@ function ymd(i) {
   function removeCommas(str) {
       return(str.replace(/,/g,''));
   }
+
+
+  function toggleDistrict(sid){
+    $('.'+sid).toggle();
+    $('.fa-caret-right').toggle();
+    $('.fa-caret-down').toggle();
+};

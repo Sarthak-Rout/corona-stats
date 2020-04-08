@@ -3,26 +3,27 @@
         CORONA APP
     </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="main.css">
-
-
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <body>
         <div class="container emp-profile">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-img">
-                            <img src="https://images.newscientist.com/wp-content/uploads/2020/01/27123401/f0070229-coronavirus_artwork-spl.jpg" alt=""/>
+                    <div class="col-md-4 col-12">
+                        <div>
+                           <center>
+                                <img class="card " src="https://images.newscientist.com/wp-content/uploads/2020/01/27123401/f0070229-coronavirus_artwork-spl.jpg" alt="" style="max-width:200px;">      
+                            </center> 
                         </div>
                     </div>
-                    <div class="col-md-5">
-                        <div class="profile-head">
-                                    <h5>
+                    <div class="col-md-5 col-12">
+                        <div class="profile-head text-center">
+                                    <h4>
                                         CORONA STATS
-                                    </h5>
+                                    </h4>
                                     <h6>
                                         Search by country
                                     </h6>
-                                    <p class="proile-rating">RANKINGS : <span>8/10</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Country</a>
@@ -140,7 +141,7 @@
                                 <option value="Hong Kong">Hong Kong</option>
                                 <option value="Hungary">Hungary</option>
                                 <option value="Iceland">Iceland</option>
-                                <option value="India">India</option>
+                                <option value="India" selected="selected">India</option>
                                 <option value="Indonesia">Indonesia</option>
                                 <option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
                                 <option value="Iraq">Iraq</option>
@@ -285,7 +286,7 @@
                                 <option value="Zambia">Zambia</option>
                                 <option value="Zimbabwe">Zimbabwe</option>
                             </select> <br>
-                            <input type="submit" class="profile-edit-btn" value="search" >
+                            <!-- <input type="submit" class="profile-edit-btn" value="search" > -->
                         </form>
                     </div>
                 </div>
@@ -348,7 +349,7 @@
 
                             </div>
                             <div class="tab-pane fade" id="india" role="tabpanel" aria-labelledby="india-tab">
-                                <h4>select no of rows</h4>
+                                <!-- <h4>select no of rows</h4>
                                 <div class="form-group">
                                     <select name="state" id="maxRows" class="form-control" style="width: 150px;">
                                         <option value="5000">Show All</option>
@@ -357,27 +358,30 @@
                                         <option value="15">15</option>
 
                                     </select>
-                                </div>
-                                <table class="table " id="mytable">
-                                    <thead>
-                                        <tr>
-                                            <th style="background-color: #7c710c; color: #fff;">State / UT</th>
-                                            <th style="background-color: #007bff ; color: #fff;">Active</th>
-                                            <th style="background-color: crimson; color: #fff;">Confirmed</th>
-                                            <th style="background-color: #6c757d; color: #fff;">Deaths</th>
-                                            <th style="background-color: #28a745; color: #fff;">Recovered</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tbody">
-                                        
-                                    </tbody>
-                                </table>
+                                </div> -->
+                                <div id="tbody">
+                                    <table class="table state-table">
+                                        <thead>
+                                            <tr> 
+                                                <th style="width: 32px;"></th>
+                                                <th style="background-color: #7c710c; color: #fff; width:128px">State / UT</th>
+                                                <th style="background-color: #007bff ; color: #fff; width:98px">Active</th>
+                                                <th style="background-color: crimson; color: #fff; width:143px">Confirmed</th>
+                                                <th style="background-color: #6c757d; color: #fff; width:105px">Deaths</th>
+                                                <th style="background-color: #28a745; color: #fff; width:147px">Recovered</th>
+                                            </tr>
+                                        </thead>
+                            
+                                    </table>
 
-                                <div class="pagination-container">
+                                </div>
+                                
+
+                                <!-- <div class="pagination-container">
                                     <nav>
                                         <ul class="pagination"></ul>
                                     </nav>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -388,46 +392,46 @@
         <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
         <script src="main.js"></script>
 
-        <script>
-            var table = '#mytable';
-            $('#maxRows').on('change', function(){
-                $('.pagination').html('')
-                var trnum = 0
-                var maxRows = parseInt($(this).val())
-                var totalRows = $(table+'tbody tr').length
-                $(table+' tr:gt(0)').each(function(){
-                    trnum++
-                    if(trnum > maxRows){
-                        $(this).hide()
+        <!-- <script>
+            // var table = '#mytable';
+            // $('#maxRows').on('change', function(){
+            //     $('.pagination').html('')
+            //     var trnum = 0
+            //     var maxRows = parseInt($(this).val())
+            //     var totalRows = $(table+'tbody tr').length
+            //     $(table+' tr:gt(0)').each(function(){
+            //         trnum++
+            //         if(trnum > maxRows){
+            //             $(this).hide()
 
-                    }
-                    if(trnum <= maxRows){
-                        $(this).show()
-                    }
-                })
-                if(totalRows > maxRows){
-                    var pagenum = Math.ceil(totalRows/maxRows)
-                    for(var i = 1; i <= pagenum; ){
-                        $('.pagination').append('<li data-page="'+i+'">\<span>'+ i++ + '<span class="sr-only">(current</span></span>\</li>').show()
-                    }
-                }
-                $('.pagination li:first-child').addClass('active')
-                $('.pagination li').on('click', function(){
-                    var pageNum = $(this).attr('data-page')
-                    var trIndex = 0;
-                    $('.pagination li').removeClass('active')
-                    $(this).addClass('active')
-                    $(table+' tr:gt(0)').each(function(){
-                        trIndex++
-                        if(trIndex > (maxRows+pageNum) || trIndex <= ((maxRows+pageNum)-maxRows)){
-                            $(this).hide()
-                        }
-                        else{
-                            $(this).show()
-                        }
-                    })
-                })
-            })
+            //         }
+            //         if(trnum <= maxRows){
+            //             $(this).show()
+            //         }
+            //     })
+            //     if(totalRows > maxRows){
+            //         var pagenum = Math.ceil(totalRows/maxRows)
+            //         for(var i = 1; i <= pagenum; ){
+            //             $('.pagination').append('<li data-page="'+i+'">\<span>'+ i++ + '<span class="sr-only">(current</span></span>\</li>').show()
+            //         }
+            //     }
+            //     $('.pagination li:first-child').addClass('active')
+            //     $('.pagination li').on('click', function(){
+            //         var pageNum = $(this).attr('data-page')
+            //         var trIndex = 0;
+            //         $('.pagination li').removeClass('active')
+            //         $(this).addClass('active')
+            //         $(table+' tr:gt(0)').each(function(){
+            //             trIndex++
+            //             if(trIndex > (maxRows+pageNum) || trIndex <= ((maxRows+pageNum)-maxRows)){
+            //                 $(this).hide()
+            //             }
+            //             else{
+            //                 $(this).show()
+            //             }
+            //         })
+            //     })
+            // })
 
             // $(function(){
             //     $('table tr:eq(0)').prepend('<th>ID</th>')
@@ -437,7 +441,7 @@
             //         $(this).prepend('<td>'+id+'</td>')
             //     })
             // })
-        </script>
+        </script> -->
 
     </body>
 </html>
