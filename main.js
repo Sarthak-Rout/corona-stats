@@ -75,47 +75,6 @@ $(document).ready(function(){
             $('#total-deaths').empty();
             $('#total-recover').empty();
 
-     //date wise data
-    // for (let i = date.length; index >= 0; index--) {
-
-    //     var settings3 = {
-    //         "async": false,
-    //         "crossDomain": true,
-    //         "url": "https://coronavirus-monitor.p.rapidapi.com/coronavirus/history_by_country_and_date.php?country="+country+"&date="+date[index],
-    //         "method": "GET",
-    //         "headers": {
-    //             "x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
-    //             "x-rapidapi-key": "fce61b9f8amshf1817269f8a2a63p1d2382jsn44ad90697b6d"
-    //         }
-    //     }
-
-    //     $.ajax(settings3).done(function (response) {
-    //         var obj3 = JSON.parse(response);
-    //         datewisecases.push(obj3.stat_by_country[0].total_cases)
-    //     });
-
-    // }
-//     var ctx = document.getElementById('myChart').getContext('2d');
-//     var chart = new Chart(ctx, {
-//     // The type of chart we want to create
-//     type: 'line',
-
-//     // The data for our dataset
-//     data: {
-//         labels: date ,
-//         datasets: [{
-//             label: 'Total number of cases',
-//             backgroundColor: 'rgb(255, 99, 132)',
-//             borderColor: 'rgb(255, 99, 132)',
-//             data: datewisecases
-//         }]
-//     },
-
-//     // Configuration options go here
-//     options: {}
-// });
-
-
     });
 
     //world data
@@ -155,7 +114,6 @@ $(document).ready(function(){
     }
 
     $.ajax(settings3).done(function (response) {  
-        console.log(response);
         
         for(p in response.state_wise){
             indianstatedistrict = [];
@@ -176,7 +134,6 @@ $(document).ready(function(){
             });
  
         }
-        console.log(indianstate);
         i=1;
         content = '';
 
@@ -201,7 +158,27 @@ $(document).ready(function(){
           $('#tbody').append(content);    
 
     }); 
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://coronavirus-monitor.p.rapidapi.com/coronavirus/affected.php",
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "coronavirus-monitor.p.rapidapi.com",
+            "x-rapidapi-key": "fce61b9f8amshf1817269f8a2a63p1d2382jsn44ad90697b6d"
+        }
+    }
     
+    $.ajax(settings).done(function (response) {
+        var obj = JSON.parse(response)
+        countrylist = ''
+        for(let i = 1; i < obj.affected_countries.length; i++){
+            countrylist+='<option value="'+ obj.affected_countries[i] +'">'+obj.affected_countries[i]+'</option>'
+        }
+
+        $('#country').append(countrylist)
+
+    });
 
     //indian data datewise
 
