@@ -170,10 +170,12 @@ $(document).ready(function(){
     }
     
     $.ajax(settings).done(function (response) {
-        var obj = JSON.parse(response)
+        var obj = JSON.parse(response);
+        var list = obj.affected_countries;
+        list.sort();
         countrylist = ''
-        for(let i = 1; i < obj.affected_countries.length; i++){
-            countrylist+='<option value="'+ obj.affected_countries[i] +'">'+obj.affected_countries[i]+'</option>'
+        for(let i = 1; i < list.length; i++){
+            countrylist+='<option value="'+ list[i] +'">'+list[i]+'</option>'
         }
 
         $('#country').append(countrylist)
