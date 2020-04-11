@@ -132,9 +132,9 @@ $(document).ready(function(){
 
     $.ajax(settings2).done(function (response) {
         var obj2 = JSON.parse(response);
-        $('#world-total-cases').append("Total cases: " + obj2.total_cases);
-        $('#world-total-deaths').append("Total deaths: " + obj2.total_deaths);
-        $('#world-total-recover').append("Total recovered: " + obj2.total_recovered);
+        $('#world-total-cases').append("Total cases <br> " + obj2.total_cases);
+        $('#world-total-deaths').append("Total deaths<br> " + obj2.total_deaths);
+        $('#world-total-recover').append("Total recovered<br> " + obj2.total_recovered);
         $('#date').append("Last updated: " +obj2.statistic_taken_at);
 
 
@@ -187,12 +187,12 @@ $(document).ready(function(){
                 print = '';
             }
             content+='<table class="table state-table tid'+i+'" id="sid'+i+'" style="'+print+'"><tbody>';
-            content += '<tr onclick="toggleDistrict('+"'sid"+i+"'"+')" ><td class = "caret"  style="cursor:pointer; width:32px;"><i class="fa fa-caret-right" aria-hidden="true"></i><i class="fa fa-caret-down" aria-hidden="true" style="display:none;"></i></td><td style="background-color:#FFEFD5; width:128px;">'+indianstate[i].name+'</td>'+'<td style="background-color:rgba(0,123,255,.0627451); width:98px">'+indianstate[i].active+'</td>'+'<td style="background-color:rgba(255,7,58,.12549);width:143px">'+indianstate[i].confirmed+'</td>'+'<td style="background-color:#dddddd;width:105px;">'+indianstate[i].deaths+'</td>'+'<td style="background-color:rgba(40,167,69,.12549);width:147px;">'+indianstate[i].recovered+'</td></tr>';                    
+            content += '<tr onclick="toggleDistrict('+"'sid"+i+"'"+')" ><td class = "caret"  style="cursor:pointer; width:32px;"><i class="fa fa-caret-right" aria-hidden="true"></i><i class="fa fa-caret-down" aria-hidden="true" style="display:none;"></i></td><td style="background-color:#FFEFD5; width:132px;">'+indianstate[i].name+'</td>'+'<td style="background-color:rgba(0,123,255,.0627451); width:98px">'+indianstate[i].active+'</td>'+'<td style="background-color:rgba(255,7,58,.12549);width:143px">'+indianstate[i].confirmed+'</td>'+'<td style="background-color:#dddddd;width:105px;">'+indianstate[i].deaths+'</td>'+'<td style="background-color:rgba(40,167,69,.12549);width:147px;">'+indianstate[i].recovered+'</td></tr>';                    
             content+='</tbody></table>';
             
-            content+='<table class="table district-table sid'+i+'" style="display:none;"> <thead><th  style="width:32px;"></th><th  style="width:128px; background-color: #7c710c; color: #fff;">District</th><th style="width:143px; background-color: crimson; color: #fff;">Confirmed</th> <th colspan="3"></th></thead> <tbody>';
+            content+='<table class="table district-table sid'+i+'" style="display:none;"> <thead><th  style="width:32px;"></th><th  style="width:132px; background-color: #7c710c; color: #fff;">District</th><th style="width:143px; background-color: crimson; color: #fff;">Confirmed</th> <th colspan="3"></th></thead> <tbody>';
             for (let j = 0; j < indianstate[i].district.length; j++) {
-                content += '<tr ><td style="width:32px;"></td><td style="background-color:#FFEFD5;width:128px;">'+indianstate[i].district[j].name+'</td><td style="background-color:rgba(255,7,58,.12549); width:143px;">'+indianstate[i].district[j].confirmed+'</td><td colspan="3"></td>';                    
+                content += '<tr ><td style="width:32px;"></td><td style="background-color:#FFEFD5;width:132px;">'+indianstate[i].district[j].name+'</td><td style="background-color:rgba(255,7,58,.12549); width:143px;">'+indianstate[i].district[j].confirmed+'</td><td colspan="3"></td>';                    
               }
             content+='</tbody></table>';
           }

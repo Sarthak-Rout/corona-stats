@@ -11,8 +11,11 @@ body{
     margin-top: 5%;
 }
 
-.profile-head h5{
+.profile-head h3{
     color: #333;
+    margin-top: 5px;
+    font-family: "archia";
+    font-weight: 700;
 }
 .profile-head h6{
     color: #0062cc;
@@ -34,10 +37,10 @@ body{
     margin-top: -15%;
 }
 .profile-work p{
-    font-size: 12px;
-    color: #818182;
+    font-size: 16px;
     font-weight: 600;
     margin-top: 10%;
+    text-align: center;
 }
 .profile-work a{
     text-decoration: none;
@@ -92,4 +95,33 @@ table{
 
 .district-table{
     margin-left: 50px;
+}
+
+#world-total-cases{
+    background-color: rgba(255,7,58,.12549);
+    color: crimson;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+
+}
+#world-total-deaths{
+    background-color: rgba(108,117,125,.0627451);
+    color: #6c757d;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+
+}
+#world-total-recover{
+    background-color: rgba(40,167,69,.12549);
+    color: #28a745;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+
+}
+#date{
+    
+    color: #999999;
 }
