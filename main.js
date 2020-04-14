@@ -182,6 +182,37 @@ $(document).ready(function(){
 
     });
 
+    //india data timeline
+    $.ajax({
+        url:"https://coronavirus-tracker-api.herokuapp.com/v2/locations/131",
+        type: "GET",
+        success: function(data){
+            // console.log(data);
+            // console.log(data.location.latest);
+            console.log(data.location.timelines.confirmed.timeline);
+            var indiatimelineconfirmed =[];
+            var indiatimelinedeaths =[];
+            for(var i in data.location.timelines.confirmed.timeline){
+                console.log(i);
+                indiatimelineconfirmed.push(i);
+            }
+            for(var i in data.location.timelines.deaths.timeline){
+                indiatimelinedeaths.push(i);
+            }
+
+            // console.log(indiatimelineconfirmed);
+            // console.log(indiatimelinedeaths);
+           
+
+
+        },
+        error: function(error){
+            console.log(error);
+        }
+        
+
+    });
+
     //indian data datewise
 
     // var settings4 = {
